@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## prereqs: mysql installed via helm with name "data"
+
+pwd=$(kubectl get secret data-mysql -o jsonpath="{.data.mysql-root-password}" | base64 --decode)
+pod=$(kubectl get pod -l app=data-mysql -o jsonpath="{.items[0].metadata.name}")
+kubectl exec -it $pod -- mysql --user=root --password=$pwd mysql

@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Spring Cloud Function with JDBC Writer
+Parameters: 
+  DBPwd: 
+    NoEcho: true
+    Description: The database account password
+    Type: String
+Resources:
+  Employee:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: JdbcWriter
+      Handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+      Runtime: java8
+      CodeUri: s3://trisberg-functions/jdbc-writer-0.0.1-SNAPSHOT-uber.jar
+      Description: Demo JDBC Writer on AWS
+      Timeout: 30
+      MemorySize: 1024
+      Environment:
+        Variables:
+          FUNCTION_NAME: 'function'
+          SPRING_DATASOURCE_URL: jdbc:mysql://springone.clsmkylda5na.us-east-1.rds.amazonaws.com:3306/test
+          SPRING_DATASOURCE_DRIVER_CLASS_NAME: 'com.mysql.jdbc.Driver'
+          SPRING_DATASOURCE_USERNAME: master
+          SPRING_DATASOURCE_PASSWORD: { "Ref" : "DBPwd" }
+          SPRING_DATASOURCE_PLATFORM: mysql
+      Role: arn:aws:iam::641162161031:role/lambda-execution-role

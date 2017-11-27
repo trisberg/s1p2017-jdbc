@@ -1,0 +1,31 @@
+apiVersion: projectriff.io/v1
+kind: Topic
+metadata:
+  name: data
+---
+
+apiVersion: projectriff.io/v1
+kind: Function
+metadata:
+  name: jdbc-writer
+spec:
+  protocol: http
+  input: data
+  container:
+    image: trisberg/jdbc-writer:0.0.1-SNAPSHOT
+    env:
+    - name: FUNCTION_URI
+      value: file:///example/function.jar?handler=example.JdbcWriter&main=example.FunctionApp
+    - name: SPRING_PROFILES_ACTIVE
+      value: kubernetes
+    - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+      value: 'com.mysql.jdbc.Driver'
+    - name: SPRING_DATASOURCE_URL
+      value: 'jdbc:mysql://data-mysql:3306/mysql'
+    - name: SPRING_DATASOURCE_USERNAME
+      value: root
+    - name: SPRING_DATASOURCE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: data-mysql
+          key: mysql-root-password
