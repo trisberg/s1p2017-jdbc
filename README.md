@@ -2,4 +2,4 @@
 
 SpringOne Platform 2017 - JDBC demos
 
-[jdbc-writer]()
+[jdbc-writer](jdbc-writer)
