@@ -2,4 +2,4 @@
 
 # prereqs: helm init (tiller should be running in the kube-system namespace)
 
-helm install -n data stable/mysql
+helm install --name data stable/mysql
