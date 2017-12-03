@@ -25,7 +25,8 @@ public class DemoApplication {
 	public void init() {
 		this.jdbcTemplate.execute(
 				"CREATE PROCEDURE delete_customer(IN in_id BIGINT)" +
-						" BEGIN DELETE FROM customers WHERE id = in_id;" +
+						" BEGIN" +
+						"   DELETE FROM customers WHERE id = in_id;" +
 						" END");
 	}
 
