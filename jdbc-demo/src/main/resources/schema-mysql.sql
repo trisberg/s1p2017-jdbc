@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS customers ( id BIGINT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), company_name VARCHAR(100), customer_since DATE);
+DROP PROCEDURE IF EXISTS delete_customer;

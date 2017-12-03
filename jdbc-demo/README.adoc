@@ -1,0 +1,32 @@
+== JDBC Demo
+
+A Simple Boot App using JDBC
+
+==== Create the Boot project:
+
+----
+curl https://start.spring.io/starter.zip -d bootVersion=2.0.0.M7 \
+    -d dependencies=jdbc,mysql \
+    -d groupId=com.springdeveloper.jdbc -d artifactId=demo \
+    -d name=demo -d baseDir=jdbc-demo -o jdbc-demo.zip
+unzip jdbc-demo.zip
+cd jdbc-demo
+----
+
+==== Add all the code
+
+...
+
+==== Build the project
+
+----
+./mvnw clean package -DskipTests
+----
+
+==== Run the project
+
+NOTE: Running the project requires a MySQL database (default config is for localhost:3606 with username "spring" and password "spring")
+
+----
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+----
