@@ -2,4 +2,6 @@
 
 SpringOne Platform 2017 - JDBC demos
 
-[jdbc-writer](jdbc-writer)
+[jdbc-demo](jdbc-demo) - Spring JDBC basic examples running against a MySQL database
+
+[jdbc-writer](jdbc-writer) - Spring Cloud Function demo that runs on both Amazon Lambda and the new riff FaaS
